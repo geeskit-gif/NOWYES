@@ -6,7 +6,7 @@
   "description": "NOWYES - Practical life assistant for migrants in Mexico. Frontend-only PWA.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
