@@ -55,7 +55,7 @@ function detectLanguage(): Lang {
 }
 
 export default function AccessGate() {
-  const [lang] = useState<Lang>(detectLanguage);
+  const [lang, setLang] = useState<Lang>(detectLanguage);
   const [status, setStatus] = useState<"checking" | "locked" | "unlocked" | "error">("checking");
 
   const verify = async (token: string) => {
@@ -145,6 +145,19 @@ export default function AccessGate() {
   return (
     <div className="min-h-screen bg-[#0A0A0C] text-white flex items-center justify-center p-5">
       <main className="w-full max-w-[520px] text-center">
+        <div className="mb-5 flex justify-end gap-1">
+          {([["es", "ES"], ["en", "EN"], ["ht", "HT"]] as const).map(([code, label]) => (
+            <button
+              key={code}
+              type="button"
+              onClick={() => setLang(code)}
+              className={`border px-2.5 py-1 text-[10px] font-black tracking-wider ${lang === code ? "border-[#D4A845] text-[#D4A845]" : "border-white/15 text-white/45"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
         <img src={logoUrl} alt="NOWYES" className="w-32 h-32 object-contain mx-auto mb-5" />
 
         <h1 className="text-[34px] font-black tracking-tight">{t.title}</h1>
