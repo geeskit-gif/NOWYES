@@ -11,38 +11,38 @@ type Lang = "es" | "en" | "ht";
 const copy = {
   es: {
     title: "NOWYES",
-    subtitle: "TU GUÍA PRÁCTICA PARA SEGUIR ADELANTE",
-    body: "Obtén acceso completo a las herramientas, rutas, formularios, mapa y MI KIT.",
+    subtitle: "NUEVO PAÍS. NUEVA VIDA. CONOCE TU PRÓXIMO PASO.",
+    body: "Rutas, servicios, formularios y herramientas prácticas para ayudarte a avanzar en México.",
     price: "$99 MXN",
     oneTime: "PAGO ÚNICO • ACCESO COMPLETO",
     button: "OBTENER ACCESO",
     checking: "VERIFICANDO ACCESO...",
     error: "No pudimos verificar el acceso. Inténtalo de nuevo.",
-    features: ["Rutas y procedimientos", "Mapa de servicios", "Formularios y CV", "MI KIT y herramientas completas"],
+    features: ["Rutas y procedimientos", "Mapa de servicios", "Formularios y CV", "MI KIT", "Todas las herramientas de NOWYES"],
     note: "Pago seguro procesado por Stripe. NOWYES no guarda los datos de tu tarjeta."
   },
   en: {
     title: "NOWYES",
-    subtitle: "YOUR PRACTICAL GUIDE FOR MOVING FORWARD",
-    body: "Get full access to the tools, routes, forms, map and MY KIT.",
+    subtitle: "NEW COUNTRY. NEW LIFE. KNOW YOUR NEXT STEP.",
+    body: "Practical routes, services, forms and tools to help you navigate life in Mexico.",
     price: "$99 MXN",
     oneTime: "ONE-TIME PAYMENT • FULL ACCESS",
-    button: "GET ACCESS",
+    button: "GET FULL ACCESS",
     checking: "VERIFYING ACCESS...",
     error: "We couldn't verify your access. Please try again.",
-    features: ["Routes and procedures", "Service map", "Forms and CV", "MY KIT and full tools"],
+    features: ["Routes and procedures", "Service map", "Forms and CV", "MY KIT", "Full NOWYES tools"],
     note: "Secure payment processed by Stripe. NOWYES does not store your card details."
   },
   ht: {
     title: "NOWYES",
-    subtitle: "GID PRATIK OU POU AVANSE",
-    body: "Jwenn aksè konplè ak zouti, wout, fòm, kat ak KIT MWEN.",
+    subtitle: "NOUVO PEYI. NOUVO LAVI. KONNEN PWOCHEN ETAP OU.",
+    body: "Wout, sèvis, fòm ak zouti pratik pou ede w navige lavi nan Meksik.",
     price: "$99 MXN",
     oneTime: "YON SÈL PEMAN • AKSÈ KONPLÈ",
-    button: "JWENN AKSÈ",
+    button: "JWENN AKSÈ KONPLÈ",
     checking: "N AP VERIFYE AKSÈ...",
     error: "Nou pa t ka verifye aksè ou. Eseye ankò.",
-    features: ["Wout ak pwosedi", "Kat sèvis", "Fòm ak CV", "KIT MWEN ak tout zouti"],
+    features: ["Wout ak pwosedi", "Kat sèvis", "Fòm ak CV", "KIT MWEN", "Tout zouti NOWYES"],
     note: "Stripe trete peman an an sekirite. NOWYES pa estoke enfòmasyon kat ou."
   }
 };
