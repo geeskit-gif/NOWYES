@@ -79,7 +79,7 @@ const translations = {
     downloadCV: "DESCARGAR CV",
     save: "Guardar",
     saved: "Guardado localmente (DEMO)",
-    locationDenied: "No pudimos obtener tu ubicación. Mostramos Tapachula centro como respaldo. Activa el GPS para mejorar resultados.",
+    locationDenied: "No pudimos obtener tu ubicación. Activa el GPS para ver servicios cerca de ti.",
     locationFound: "Ubicación aproximada encontrada.",
     formProgress: "Paso",
     back: "Atrás",
@@ -88,7 +88,7 @@ const translations = {
     finish: "Finalizar",
     helpQ1: "¿Cuál es tu situación ahora?",
     helpOptions: [
-      "Acabo de llegar a Tapachula",
+      "Acabo de llegar a México",
       "Necesito regularizar documentos",
       "Busco trabajo urgente",
       "Necesito ayuda médica o alimentos",
@@ -96,9 +96,9 @@ const translations = {
     healthTitle: "Servicios de salud cercanos",
     foodTitle: "Comida y servicios esenciales",
     workTitle: "Oportunidades y CV",
-    docsTitle: "Trámites en Tapachula",
+    docsTitle: "Trámites en México",
     formsTitle: "Ayuda con formularios",
-    mapTitle: "Mapa de servicios - Tapachula",
+    mapTitle: "Mapa de servicios - México",
     kitTabsHint: "Todo se guarda solo en este dispositivo. No se envía a ningún servidor.",
   },
   en: {
@@ -149,7 +149,7 @@ const translations = {
     save: "Save",
     saved: "Saved locally (DEMO)",
     locationDenied:
-      "We couldn't get your location. Showing central Tapachula as fallback. Enable GPS for better results.",
+      "We couldn't get your location. Enable GPS to find services near you.",
     locationFound: "Approximate location found.",
     formProgress: "Step",
     back: "Back",
@@ -158,7 +158,7 @@ const translations = {
     finish: "Finish",
     helpQ1: "What is your situation now?",
     helpOptions: [
-      "I just arrived in Tapachula",
+      "I just arrived in México",
       "I need to sort out documents",
       "I urgently need work",
       "I need medical help or food",
@@ -166,9 +166,9 @@ const translations = {
     healthTitle: "Nearby health services",
     foodTitle: "Food and essential services",
     workTitle: "Opportunities and CV",
-    docsTitle: "Procedures in Tapachula",
+    docsTitle: "Procedures in México",
     formsTitle: "Form assistance",
-    mapTitle: "Service map - Tapachula",
+    mapTitle: "Service map - México",
     kitTabsHint: "Everything is saved only on this device. Nothing is sent to a server.",
   },
   ht: {
@@ -219,7 +219,7 @@ const translations = {
     save: "Anrejistre",
     saved: "Anrejistre lokalman (DEMO)",
     locationDenied:
-      "Nou pa t ka jwenn kote ou ye a. N ap montre sant Tapachula kòm sipò. Aktive GPS pou pi bon rezilta.",
+      "Nou pa t ka jwenn kote ou ye a. N ap montre sant México kòm sipò. Aktive GPS pou pi bon rezilta.",
     locationFound: "Nou jwenn kote w apeprè.",
     formProgress: "Etap",
     back: "Retounen",
@@ -228,7 +228,7 @@ const translations = {
     finish: "Fini",
     helpQ1: "Ki sitiyasyon ou ye kounye a?",
     helpOptions: [
-      "Mwen fèk rive Tapachula",
+      "Mwen fèk rive México",
       "Mwen bezwen dokiman",
       "M ap chèche travay ijan",
       "Mwen bezwen èd medikal oswa manje",
@@ -236,9 +236,9 @@ const translations = {
     healthTitle: "Sèvis sante toupre",
     foodTitle: "Manje ak sèvis esansyèl",
     workTitle: "Opòtinite ak CV",
-    docsTitle: "Pwosedi nan Tapachula",
+    docsTitle: "Pwosedi nan México",
     formsTitle: "Èd ak fòm",
-    mapTitle: "Kat sèvis - Tapachula",
+    mapTitle: "Kat sèvis - México",
     kitTabsHint: "Tout bagay anrejistre sèlman sou aparèy sa a. Anyen pa voye sou sèvè.",
   },
 };
@@ -258,149 +258,17 @@ type Service = {
   y: number;
 };
 
-const services: Service[] = [
-  {
-    id: "1",
-    category: "migration",
-    name: { es: "COMAR Tapachula", en: "COMAR Tapachula", ht: "COMAR Tapachula" },
-    desc: {
-      es: "Solicitud de reconocimiento de condición de refugiado. Llega temprano.",
-      en: "Refugee status application. Arrive early.",
-      ht: "Demann estati refijye. Vini bonè.",
-    },
-    location: "Av. Central, Tapachula",
-    hours: "Lun-Vie 9:00-15:00",
-    contact: "Fuente oficial COMAR",
-    verified: true,
-    last: "2025-12-01",
-    offline: true,
-    x: 28,
-    y: 34,
-  },
-  {
-    id: "2",
-    category: "assistance",
-    name: { es: "Casa del Migrante Belén", en: "Belén Migrant House", ht: "Kay Migran Belén" },
-    desc: {
-      es: "Albergue, asesoría y alimentos. Registro previo.",
-      en: "Shelter, counseling and meals. Prior registration.",
-      ht: "Ebèjman, konsèy ak manje. Enskripsyon anvan.",
-    },
-    location: "Col. San Antonio Cahoacán",
-    hours: "24h - cupo limitado",
-    contact: "Contacto local verificado",
-    verified: true,
-    last: "2025-11-28",
-    offline: true,
-    x: 62,
-    y: 22,
-  },
-  {
-    id: "3",
-    category: "health",
-    name: { es: "Centro de Salud Tapachula Centro", en: "Tapachula Central Health Center", ht: "Sant Sante Sant Tapachula" },
-    desc: {
-      es: "Atención básica, vacunas, urgencias leves.",
-      en: "Basic care, vaccines, minor emergencies.",
-      ht: "Swen debaz, vaksen, ijans lejè.",
-    },
-    location: "Calle Central, Centro",
-    hours: "Lun-Dom 8:00-20:00",
-    contact: "Secretaría de Salud",
-    verified: true,
-    last: "2025-11-20",
-    offline: true,
-    x: 45,
-    y: 55,
-  },
-  {
-    id: "4",
-    category: "food",
-    name: { es: "Mercado San Juan", en: "San Juan Market", ht: "Mache San Juan" },
-    desc: { es: "Alimentos económicos, frutas, abarrotes.", en: "Affordable food, fruits, groceries.", ht: "Manje bon mache, fwi, pwovizyon." },
-    location: "Mercado San Juan, Centro",
-    hours: "6:00-18:00",
-    contact: "Comerciantes locales",
-    verified: false,
-    last: "2025-11-15",
-    offline: false,
-    x: 52,
-    y: 68,
-  },
-  {
-    id: "5",
-    category: "shelter",
-    name: { es: "Albergue Jesús el Buen Pastor", en: "Good Shepherd Shelter", ht: "Ebèjman Bon Bèje a" },
-    desc: { es: "Hospedaje temporal, apoyo humanitario.", en: "Temporary lodging, humanitarian support.", ht: "Lojman tanporè, sipò imanitè." },
-    location: "Tapachula Sur",
-    hours: "Lun-Dom 7:00-19:00",
-    contact: "Equipo humanitario",
-    verified: false,
-    last: "2025-11-10",
-    offline: true,
-    x: 70,
-    y: 78,
-  },
-  {
-    id: "6",
-    category: "work",
-    name: { es: "Bolsa de Trabajo Municipal", en: "Municipal Job Board", ht: "Biwo Travay Minisipal" },
-    desc: {
-      es: "Vacantes locales: limpieza, cocina, construcción.",
-      en: "Local openings: cleaning, kitchen, construction.",
-      ht: "Travay lokal: netwayaj, kwizin, konstriksyon.",
-    },
-    location: "Palacio Municipal",
-    hours: "Lun-Vie 9:00-14:00",
-    contact: "Ayuntamiento",
-    verified: true,
-    last: "2025-12-02",
-    offline: true,
-    x: 40,
-    y: 40,
-  },
-  {
-    id: "7",
-    category: "sim",
-    name: { es: "Telcel Centro - SIM y Recargas", en: "Telcel Center - SIM & Top-up", ht: "Telcel Sant - SIM ak Rechaj" },
-    desc: { es: "Compra de chip, recargas, internet.", en: "SIM purchase, top-up, internet.", ht: "Acha SIM, rechaj, entènèt." },
-    location: "Av. Central Norte",
-    hours: "9:00-20:00",
-    contact: "Tienda oficial",
-    verified: false,
-    last: "2025-11-25",
-    offline: false,
-    x: 35,
-    y: 62,
-  },
-  {
-    id: "8",
-    category: "wifi",
-    name: { es: "Biblioteca Pública - WiFi Libre", en: "Public Library - Free WiFi", ht: "Bibliyotèk Piblik - WiFi Gratis" },
-    desc: { es: "WiFi gratuito 60 min, espacio tranquilo.", en: "Free WiFi 60 min, quiet space.", ht: "WiFi gratis 60 min, kote trankil." },
-    location: "Parque Central",
-    hours: "Lun-Vie 10:00-17:00",
-    contact: "Municipio",
-    verified: true,
-    last: "2025-11-18",
-    offline: false,
-    x: 48,
-    y: 48,
-  },
-  {
-    id: "9",
-    category: "bank",
-    name: { es: "Banco Azteca - Cajero y envíos", en: "Banco Azteca - ATM & transfers", ht: "Banco Azteca - ATM ak transfè" },
-    desc: { es: "Retiros, depósitos, envíos nacionales.", en: "Withdrawals, deposits, domestic transfers.", ht: "Retrè, depo, transfè nasyonal." },
-    location: "Centro, sucursal principal",
-    hours: "9:00-18:00",
-    contact: "Banco Azteca",
-    verified: true,
-    last: "2025-11-30",
-    offline: false,
-    x: 55,
-    y: 38,
-  },
+const serviceSearches = [
+  { id: "migration", label: { es: "INM — Oficinas de Migración", en: "INM — Immigration Offices", ht: "INM — Biwo Migrasyon" }, query: "Instituto Nacional de Migración INM" },
+  { id: "refugee", label: { es: "COMAR — Atención a personas refugiadas", en: "COMAR — Refugee assistance", ht: "COMAR — Èd pou refijye" }, query: "COMAR Comisión Mexicana de Ayuda a Refugiados" },
+  { id: "health", label: { es: "IMSS / IMSS-Bienestar — Salud", en: "IMSS / IMSS-Bienestar — Health", ht: "IMSS / IMSS-Bienestar — Sante" }, query: "IMSS IMSS-Bienestar clínica hospital" },
+  { id: "sat", label: { es: "SAT — Oficinas y servicios", en: "SAT — Offices and services", ht: "SAT — Biwo ak sèvis" }, query: "SAT Servicio de Administración Tributaria" },
+  { id: "civil", label: { es: "Registro Civil — Oficialías", en: "Civil Registry offices", ht: "Rejis Sivil — Biwo" }, query: "Registro Civil oficialía" },
+  { id: "work", label: { es: "Servicio Nacional de Empleo", en: "National Employment Service", ht: "Sèvis Nasyonal Travay" }, query: "Servicio Nacional de Empleo" },
+  { id: "food", label: { es: "Comida y servicios esenciales", en: "Food and essential services", ht: "Manje ak sèvis esansyèl" }, query: "comida mercado supermercado" },
+  { id: "shelter", label: { es: "Albergues y ayuda humanitaria", en: "Shelters and humanitarian aid", ht: "Ebèjman ak èd imanitè" }, query: "albergue migrantes ayuda humanitaria" },
+  { id: "sim", label: { es: "SIM, teléfono e internet", en: "SIM, phone and internet", ht: "SIM, telefòn ak entènèt" }, query: "Telcel AT&T Movistar" },
+  { id: "bank", label: { es: "Bancos y cajeros", en: "Banks and ATMs", ht: "Bank ak ATM" }, query: "banco cajero ATM" },
 ];
 
 type Procedure = {
@@ -422,7 +290,7 @@ const procedures: Procedure[] = [
         ht: ["Dokiman idantite", "Prèv sejou (COMAR/INM si sa aplikab)"],
       },
       fees: "Gratuito / Free / Gratis (DEMO)",
-      appointment: { es: "Módulo RENAPO Tapachula", en: "RENAPO office Tapachula", ht: "Biwo RENAPO Tapachula" },
+      appointment: { es: "Módulo RENAPO México", en: "RENAPO office México", ht: "Biwo RENAPO México" },
       source: "RENAPO / SEGOB",
       last: "2025-12-01",
     },
@@ -451,7 +319,7 @@ const procedures: Procedure[] = [
         ht: ["Lèt COMAR pozitif", "Paspò oswa ID", "Foto paspò"],
       },
       fees: "Según INM / Per INM / Dapre INM (DEMO)",
-      appointment: { es: "INM Tapachula - cita en línea", en: "INM Tapachula - online appointment", ht: "INM Tapachula - randevou sou entènèt" },
+      appointment: { es: "INM México - cita en línea", en: "INM México - online appointment", ht: "INM México - randevou sou entènèt" },
       source: "INM",
       last: "2025-11-29",
     },
@@ -481,7 +349,7 @@ const procedures: Procedure[] = [
       },
       fees: "Gratuito o bajo costo / Free or low cost",
       appointment: { es: "Ayuntamiento / Delegación", en: "City Hall", ht: "Meri" },
-      source: "Ayuntamiento de Tapachula",
+      source: "Ayuntamiento de México",
       last: "2025-11-20",
     },
     prep: {
@@ -505,7 +373,7 @@ const procedures: Procedure[] = [
         ht: ["CURP", "Prèv adrès", "ID ofisyèl"],
       },
       fees: "Gratuito",
-      appointment: { es: "SAT Tapachula - cita", en: "SAT Tapachula - appointment", ht: "SAT Tapachula - randevou" },
+      appointment: { es: "SAT México - cita", en: "SAT México - appointment", ht: "SAT México - randevou" },
       source: "SAT",
       last: "2025-11-18",
     },
@@ -682,10 +550,12 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
     showToast(t.saved);
   };
 
-  const filteredServices = services.filter((s) => {
-    if (mapCat === "all") return true;
-    return s.category === mapCat;
-  });
+  const filteredServices = serviceSearches.filter((s) => mapCat === "all" || s.id === mapCat);
+
+  const mapsUrl = (query: string) => {
+    const q = userPos ? `${query} near ${userPos.lat},${userPos.lng}` : query + " Mexico";
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+  };
 
   const handleAddDoc = () => {
     const name = prompt(
@@ -711,7 +581,7 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
     const prof = (s: string) => s.trim();
     return {
       nombre: prof(myCV.nombre || myData.nombre || "—"),
-      objetivo: prof(myCV.objetivo) || (lang === "es" ? "Busco oportunidad laboral estable en Tapachula con disponibilidad inmediata." : lang === "en" ? "Seeking stable job opportunity in Tapachula with immediate availability." : "M ap chèche yon opòtinite travay ki estab nan Tapachula ak disponibilite imedyat."),
+      objetivo: prof(myCV.objetivo) || (lang === "es" ? "Busco oportunidad laboral estable en México con disponibilidad inmediata." : lang === "en" ? "Seeking stable job opportunity in Mexico with immediate availability." : "M ap chèche yon opòtinite travay ki estab nan México ak disponibilite imedyat."),
       contacto: [myCV.telefono || myData.telefono, myCV.email].filter(Boolean).join(" • "),
       habilidades: myCV.habilidades,
       idiomas: myCV.idiomas,
@@ -986,7 +856,7 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
                 )}
                 {formStep === 1 && (
                   <>
-                    <h3 className="text-[18px] font-bold leading-snug">{lang === "es" ? "¿Cuál es tu domicilio actual en Tapachula?" : lang === "en" ? "What is your current address in Tapachula?" : "Ki adrès aktyèl ou nan Tapachula?"}</h3>
+                    <h3 className="text-[18px] font-bold leading-snug">{lang === "es" ? "¿Cuál es tu domicilio actual en México?" : lang === "en" ? "What is your current address in México?" : "Ki adrès aktyèl ou nan México?"}</h3>
                     <input value={formAnswers.q2} onChange={(e) => setFormAnswers({ ...formAnswers, q2: e.target.value })} placeholder="Colonia, calle, número" className="w-full min-h-[48px] rounded-[8px] bg-black/40 border border-white/10 px-4 text-[14px] outline-none focus:border-[#D4A845]/50" />
                     {formAnswers.q1 && formAnswers.q2 && formAnswers.q1.length > 0 && formAnswers.q2.length < 5 && (
                       <div className="flex gap-2 rounded-[8px] border border-amber-400/20 bg-amber-500/10 p-3 text-[12px] text-amber-200">
@@ -1070,7 +940,7 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-[12px] font-black tracking-widest text-white/60">{lang === "es" ? "VACANTES DEMO - TAPACHULA" : lang === "en" ? "DEMO JOBS - TAPACHULA" : "TRAVAY DEMO - TAPACHULA"}</h3>
+                <h3 className="text-[12px] font-black tracking-widest text-white/60">{lang === "es" ? "VACANTES DEMO - MÉXICO" : lang === "en" ? "DEMO JOBS - MÉXICO" : "TRAVAY DEMO - MÉXICO"}</h3>
                 {jobMocks.map((job, i) => (
                   <div key={i} className="rounded-[8px] bg-[#151519] border border-white/10 p-4 flex justify-between items-start">
                     <div>
@@ -1150,19 +1020,15 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
             <div className="relative rounded-[8px] overflow-hidden border border-white/10 bg-[#0E0E12] h-[320px] sm:h-[420px]">
               {/* grid */}
               <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-              <div className="absolute top-3 left-3 rounded-full bg-black/60 border border-white/10 px-2.5 py-1 text-[10px] tracking-widest font-bold">TAPACHULA • CENTRO</div>
+              <div className="absolute top-3 left-3 rounded-full bg-black/60 border border-white/10 px-2.5 py-1 text-[10px] tracking-widest font-bold">TU ZONA</div>
               {userPos && <div className="absolute top-3 right-3 rounded-full bg-[#D4A845] text-black px-2.5 py-1 text-[10px] font-black tracking-widest">TU UBICACIÓN</div>}
-              {/* pins */}
-              {filteredServices.map((s) => (
-                <button key={s.id} className="absolute -translate-x-1/2 -translate-y-1/2 group" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
-                  <div className={`h-7 w-7 rounded-full border-2 flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${s.verified ? "bg-[#D4A845] border-black text-black" : "bg-white/90 border-black/20 text-black"}`}>
-                    <MapPin className="h-3.5 w-3.5" />
-                  </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[28px] hidden group-hover:block z-10">
-                    <div className="rounded-[6px] bg-black border border-white/20 px-2 py-1 text-[11px] whitespace-nowrap">{s.name[lang]}</div>
-                  </div>
-                </button>
-              ))}
+              <div className="absolute inset-0 flex items-center justify-center p-6">
+                <div className="max-w-[440px] text-center">
+                  <MapPinned className="h-10 w-10 mx-auto text-[#D4A845] mb-3" />
+                  <p className="text-[14px] font-bold">{lang === "es" ? "Lugares reales cerca de ti" : lang === "en" ? "Real places near you" : "Kote reyèl toupre w"}</p>
+                  <p className="mt-2 text-[12px] text-white/50">{lang === "es" ? "NOWYES no inventa direcciones. Usa tu ubicación para abrir resultados actuales en el mapa." : lang === "en" ? "NOWYES does not invent addresses. Use your location to open current map results." : "NOWYES pa envante adrès. Sèvi ak kote w pou louvri rezilta aktyèl sou kat la."}</p>
+                </div>
+              </div>
               {/* user dot */}
               {userPos && (
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -1187,15 +1053,21 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
                 <div key={s.id} className="rounded-[8px] bg-[#151519] border border-white/10 p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h3 className="text-[14px] font-bold truncate">{s.name[lang]}</h3>
-                      <p className="text-[12px] text-white/50 uppercase tracking-widest mt-0.5">{s.category} • {s.location}</p>
-                      <p className="text-[13px] text-white/70 mt-2">{s.desc[lang]}</p>
-                      <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-white/40">
-                        <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {s.hours}</span>
-                        <span className="flex items-center gap-1"><Phone className="h-3 w-3" /> {s.contact}</span>
-                        <span className="flex items-center gap-1"><ShieldCheck className="h-3 w-3" /> {s.last}</span>
-                        {s.offline && <span className="flex items-center gap-1 text-emerald-300"><Wifi className="h-3 w-3" /> Offline OK</span>}
-                      </div>
+                      <h3 className="text-[14px] font-bold">{s.label[lang]}</h3>
+                      <p className="text-[12px] text-white/50 uppercase tracking-widest mt-1">
+                        {lang === "es" ? "RESULTADOS ACTUALES • TU ZONA" : lang === "en" ? "CURRENT RESULTS • YOUR AREA" : "REZILTA AKTYÈL • ZÒN OU"}
+                      </p>
+                      <p className="text-[13px] text-white/70 mt-2">
+                        {lang === "es" ? "Abre el mapa para ver lugares, direcciones, horarios y teléfonos actuales." : lang === "en" ? "Open the map to see current places, addresses, hours and phone numbers." : "Louvri kat la pou wè kote, adrès, lè ak telefòn aktyèl yo."}
+                      </p>
+                    </div>
+                    <a href={mapsUrl(s.query)} target="_blank" rel="noreferrer" className="shrink-0 min-h-[42px] px-3 flex items-center justify-center bg-[#D4A845] text-black text-[10px] font-black tracking-widest">
+                      {lang === "es" ? "ABRIR MAPA" : lang === "en" ? "OPEN MAP" : "LOUVRI KAT"}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
                     </div>
                     <span className={`shrink-0 text-[9px] px-2 py-1 rounded-full border font-bold tracking-widest ${s.verified ? "border-emerald-400/30 text-emerald-300 bg-emerald-500/10" : "border-amber-400/30 text-amber-200 bg-amber-500/10"}`}>{s.verified ? t.verified : t.demo}</span>
                   </div>
@@ -1235,7 +1107,7 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
                     <input value={myData.telefono} onChange={(e) => setMyData({ ...myData, telefono: e.target.value })} placeholder="Tel / WhatsApp" className="min-h-[44px] rounded-[6px] bg-black/40 border border-white/10 px-3 text-[13px]" />
                     <input value={myData.nacimiento} onChange={(e) => setMyData({ ...myData, nacimiento: e.target.value })} placeholder={lang === "es" ? "Fecha nacimiento" : lang === "en" ? "Birth date" : "Dat nesans"} className="min-h-[44px] rounded-[6px] bg-black/40 border border-white/10 px-3 text-[13px]" />
                     <input value={myData.origen} onChange={(e) => setMyData({ ...myData, origen: e.target.value })} placeholder={lang === "es" ? "País origen" : lang === "en" ? "Country of origin" : "Peyi orijin"} className="min-h-[44px] rounded-[6px] bg-black/40 border border-white/10 px-3 text-[13px]" />
-                    <input value={myData.direccion} onChange={(e) => setMyData({ ...myData, direccion: e.target.value })} placeholder={lang === "es" ? "Dirección Tapachula" : lang === "en" ? "Address Tapachula" : "Adrès Tapachula"} className="min-h-[44px] rounded-[6px] bg-black/40 border border-white/10 px-3 text-[13px] sm:col-span-2" />
+                    <input value={myData.direccion} onChange={(e) => setMyData({ ...myData, direccion: e.target.value })} placeholder={lang === "es" ? "Tu dirección actual" : lang === "en" ? "Your current address" : "Adrès aktyèl ou"} className="min-h-[44px] rounded-[6px] bg-black/40 border border-white/10 px-3 text-[13px] sm:col-span-2" />
                   </div>
                   {myData.nombre === "" && <p className="text-[12px] text-white/40">{t.empty.datos}</p>}
                 </div>
@@ -1406,7 +1278,7 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
               {helpStep === 1 && (
                 <>
                   <h4 className="text-[18px] font-bold leading-snug">
-                    {helpChoice === 0 ? (lang === "es" ? "Bienvenido a Tapachula. Primeros 3 pasos prácticos:" : lang === "en" ? "Welcome to Tapachula. First 3 practical steps:" : "Byenveni Tapachula. 3 premye etap pratik:") :
+                    {helpChoice === 0 ? (lang === "es" ? "Bienvenido a México. Primeros 3 pasos prácticos:" : lang === "en" ? "Welcome to México. First 3 practical steps:" : "Byenveni México. 3 premye etap pratik:") :
                      helpChoice === 1 ? (lang === "es" ? "Para regularizar, organiza esto:" : lang === "en" ? "To regularize, organize this:" : "Pou regilarize, òganize sa:") :
                      helpChoice === 2 ? (lang === "es" ? "Para trabajo rápido, enfócate en:" : lang === "en" ? "For quick work, focus on:" : "Pou travay rapid, konsantre sou:") :
                      (lang === "es" ? "Ayuda urgente: ve aquí primero" : lang === "en" ? "Urgent help: go here first" : "Èd ijan: ale la an premye")}
