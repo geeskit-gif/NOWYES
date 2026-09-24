@@ -546,7 +546,7 @@ function useLocalStorage<T>(key: string, initial: T) {
   return [val, setVal] as const;
 }
 
-export default function App() {
+export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
   const [lang, setLang] = useState<Lang>("es");
   const [route, setRoute] = useState<Route>("home");
   const [isOnline, setIsOnline] = useState(true);
@@ -586,6 +586,16 @@ export default function App() {
   const [formAnswers, setFormAnswers] = useState({ q1: "", q2: "", q3: "", q4: "" });
 
   const t = translations[lang];
+
+  const premiumRoutes: Route[] = ["docs", "work", "forms", "kit"];
+  const [showPremium, setShowPremium] = useState(false);
+  const goToRoute = (next: Route) => {
+    if (!fullAccess && premiumRoutes.includes(next)) {
+      setShowPremium(true);
+      return;
+    }
+    setRoute(next);
+  };
 
   useEffect(() => {
     setIsOnline(navigator.onLine);
@@ -820,7 +830,7 @@ export default function App() {
               ].map((c) => (
                 <button
                   key={c.key}
-                  onClick={() => setRoute(c.route)}
+                  onClick={() => goToRoute(c.route)}
                   className={`group text-left min-h-[112px] sm:min-h-[132px] rounded-[8px] bg-[#151519] border border-white/[0.08] border-l-[3px] ${c.accent} p-4 sm:p-5 flex flex-col justify-between hover:bg-[#1C1C21] hover:border-white/15 transition-all active:scale-[0.99]`}
                 >
                   <div className="flex items-start justify-between">
@@ -840,7 +850,7 @@ export default function App() {
                   <p className="text-[14px] text-white/60 mt-1">{t.myKitDesc}</p>
                 </div>
                 <button
-                  onClick={() => setRoute("kit")}
+                  onClick={() => goToRoute("kit")}
                   className="min-h-[44px] px-4 rounded-[8px] bg-white text-black text-[12px] font-bold tracking-widest hover:bg-white/90"
                 >
                   {lang === "es" ? "ABRIR" : lang === "en" ? "OPEN" : "LOUVRI"}
@@ -937,7 +947,7 @@ export default function App() {
                   </div>
                   <div className="p-3 flex justify-end bg-black/20">
                     <button
-                      onClick={() => setRoute("forms")}
+                      onClick={() => goToRoute("forms")}
                       className="min-h-[36px] px-3 rounded-[6px] border border-white/10 bg-white/5 text-[11px] font-bold tracking-widest hover:bg-white/10"
                     >
                       {lang === "es" ? "PREPARAR FORMULARIO →" : lang === "en" ? "PREPARE FORM →" : "PREPARE FÒM →"}
@@ -1360,7 +1370,7 @@ export default function App() {
             const active = route === item.id || (route === "docs" && item.id === "home") || (route === "forms" && item.id === "home") || (route === "work" && item.id === "home") || (route === "health" && item.id === "home") || (route === "food" && item.id === "home");
             const isActive = route === item.id || (item.id === "home" && ["docs", "forms", "work", "health", "food"].includes(route));
             return (
-              <button key={item.id} onClick={() => setRoute(item.id)} className={`flex flex-col items-center justify-center gap-1 min-h-[44px] relative ${isActive ? "text-[#D4A845]" : "text-white/45 hover:text-white/80"}`}>
+              <button key={item.id} onClick={() => goToRoute(item.id)} className={`flex flex-col items-center justify-center gap-1 min-h-[44px] relative ${isActive ? "text-[#D4A845]" : "text-white/45 hover:text-white/80"}`}>
                 {isActive && <div className="absolute top-0 h-[2px] w-8 bg-[#D4A845]" />}
                 <item.icon className={`h-5 w-5 ${isActive ? "text-[#D4A845]" : "text-current"}`} />
                 <span className="text-[10px] font-bold tracking-widest">{item.label}</span>
@@ -1425,8 +1435,8 @@ export default function App() {
                   </div>
 
                   <div className="pt-2 grid grid-cols-3 gap-2">
-                    <button onClick={() => { setHelpOpen(false); setRoute("docs"); }} className="min-h-[44px] rounded-[8px] bg-white/10 border border-white/10 text-[11px] font-bold tracking-widest">DOCS</button>
-                    <button onClick={() => { setHelpOpen(false); setRoute("work"); }} className="min-h-[44px] rounded-[8px] bg-white/10 border border-white/10 text-[11px] font-bold tracking-widest">WORK</button>
+                    <button onClick={() => { setHelpOpen(false); goToRoute("docs"); }} className="min-h-[44px] rounded-[8px] bg-white/10 border border-white/10 text-[11px] font-bold tracking-widest">DOCS</button>
+                    <button onClick={() => { setHelpOpen(false); goToRoute("work"); }} className="min-h-[44px] rounded-[8px] bg-white/10 border border-white/10 text-[11px] font-bold tracking-widest">WORK</button>
                     <button onClick={() => { setHelpOpen(false); setRoute("map"); }} className="min-h-[44px] rounded-[8px] bg-[#D4A845] text-black text-[11px] font-bold tracking-widest">MAPA</button>
                   </div>
                 </>
@@ -1475,6 +1485,21 @@ export default function App() {
               <button onClick={() => setShowCVPreview(false)} className="flex-1 min-h-[44px] rounded-[8px] border border-black/10 text-[12px] font-bold tracking-widest">CERRAR</button>
               <button onClick={handlePrintCV} className="flex-1 min-h-[44px] rounded-[8px] bg-black text-white text-[12px] font-bold tracking-widest flex items-center justify-center gap-2"><Download className="h-4 w-4" /> {t.downloadCV}</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Premium access prompt */}
+      {showPremium && !fullAccess && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 backdrop-blur-sm p-5">
+          <div className="w-full max-w-[440px] border border-[#D4A845]/30 bg-[#151519] p-6 text-center">
+            <img src={logoUrl} alt="NOWYES" className="w-20 h-20 object-contain mx-auto mb-4" />
+            <h3 className="text-[20px] font-black">{lang === "es" ? "ESTO ES PARTE DE NOWYES COMPLETO" : lang === "en" ? "THIS IS PART OF FULL NOWYES" : "SA A SE NAN NOWYES KONPLÈ"}</h3>
+            <p className="mt-3 text-[13px] leading-relaxed text-white/60">{lang === "es" ? "Puedes explorar el mapa, ayuda, salud y comida gratis. Desbloquea DOCUMENTOS, TRABAJO, FORMULARIOS y MI KIT con acceso completo." : lang === "en" ? "You can explore the map, help, health and food sections for free. Unlock DOCUMENTS, WORK, FORMS and MY KIT with full access." : "Ou ka eksplore kat la, èd, sante ak manje gratis. Debloke DOKIMAN, TRAVAY, FÒM ak KIT MWEN ak aksè konplè."}</p>
+            <div className="mt-5 text-[28px] font-black">$99 MXN</div>
+            <div className="mt-1 text-[10px] tracking-[0.18em] text-white/40">{lang === "es" ? "PAGO ÚNICO • ACCESO COMPLETO" : lang === "en" ? "ONE-TIME PAYMENT • FULL ACCESS" : "YON SÈL PEMAN • AKSÈ KONPLÈ"}</div>
+            <a href="https://buy.stripe.com/eVqdN85fR8nv2LsayB3cc07" className="mt-5 flex min-h-[50px] items-center justify-center bg-[#D4A845] px-6 text-[12px] font-black tracking-[0.16em] text-black">{lang === "es" ? "OBTENER ACCESO" : lang === "en" ? "GET FULL ACCESS" : "JWENN AKSÈ KONPLÈ"}</a>
+            <button onClick={() => setShowPremium(false)} className="mt-3 min-h-[42px] px-5 border border-white/10 text-[11px] font-bold tracking-widest text-white/60">{lang === "es" ? "SEGUIR EXPLORANDO GRATIS" : lang === "en" ? "KEEP EXPLORING FREE" : "KONTINYE EKSPLÒRE GRATIS"}</button>
           </div>
         </div>
       )}
