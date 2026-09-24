@@ -35,6 +35,9 @@ const translations = {
   es: {
     homeQuestion: "¿QUÉ NECESITAS HOY?",
     homeSub: "Cuéntanos qué necesitas y te guiamos.",
+    unlockTitle: "TODO LO ESENCIAL PARA TU PRÓXIMO PASO",
+    unlockSub: "Explora gratis. Desbloquea las herramientas completas de NOWYES por $99 MXN, pago único.",
+    unlockBtn: "OBTENER ACCESO COMPLETO — $99 MXN",
     entry: {
       docs: "DOCUMENTOS",
       work: "TRABAJO",
@@ -104,6 +107,9 @@ const translations = {
   en: {
     homeQuestion: "WHAT DO YOU NEED TODAY?",
     homeSub: "Tell us what you need and we'll guide you.",
+    unlockTitle: "EVERYTHING YOU NEED FOR YOUR NEXT STEP",
+    unlockSub: "Explore for free. Unlock the full NOWYES tools for $99 MXN, one-time payment.",
+    unlockBtn: "GET FULL ACCESS — $99 MXN",
     entry: {
       docs: "DOCUMENTS",
       work: "WORK",
@@ -174,6 +180,9 @@ const translations = {
   ht: {
     homeQuestion: "KISA OU BEZWEN JODI A?",
     homeSub: "Di nou sa ou bezwen epi n ap gide w.",
+    unlockTitle: "TOUT SA OU BEZWEN POU PWOCHEN ETAP OU",
+    unlockSub: "Eksplore gratis. Jwenn tout zouti NOWYES yo pou $99 MXN, yon sèl peman.",
+    unlockBtn: "JWENN AKSÈ KONPLÈ — $99 MXN",
     entry: {
       docs: "DOKIMAN",
       work: "TRAVAY",
@@ -414,7 +423,7 @@ function useLocalStorage<T>(key: string, initial: T) {
   return [val, setVal] as const;
 }
 
-export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
+export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: boolean; paymentUrl?: string }) {
   const [lang, setLang] = useState<Lang>("es");
   const [route, setRoute] = useState<Route>("home");
   const [isOnline, setIsOnline] = useState(true);
