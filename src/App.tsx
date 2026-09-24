@@ -1060,12 +1060,6 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
                 </div>
               ))}
             </div>
-                    </div>
-                    <span className={`shrink-0 text-[9px] px-2 py-1 rounded-full border font-bold tracking-widest ${s.verified ? "border-emerald-400/30 text-emerald-300 bg-emerald-500/10" : "border-amber-400/30 text-amber-200 bg-amber-500/10"}`}>{s.verified ? t.verified : t.demo}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
 
             <button onClick={handleOfflineDownload} className="w-full min-h-[48px] rounded-[8px] border border-[#D4A845]/30 bg-[#D4A845]/10 text-[#D4A845] font-black tracking-widest text-[12px]">
               {t.downloadOffline} {offlineData ? "✓" : ""}
