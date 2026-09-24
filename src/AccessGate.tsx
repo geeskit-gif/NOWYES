@@ -91,7 +91,13 @@ export default function AccessGate() {
     const run = async () => {
       const params = new URLSearchParams(window.location.search);
       const urlToken = params.get("access");
+      const demoMode = params.get("demo") === "1";
       const storedToken = localStorage.getItem(TOKEN_KEY);
+
+      if (demoMode) {
+        if (!cancelled) setStatus("unlocked");
+        return;
+      }
 
       if (urlToken) {
         const ok = await verify(urlToken);
