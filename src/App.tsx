@@ -940,13 +940,12 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-[12px] font-black tracking-widest text-white/60">{lang === "es" ? "VACANTES DEMO - MÉXICO" : lang === "en" ? "DEMO JOBS - MÉXICO" : "TRAVAY DEMO - MÉXICO"}</h3>
-                {jobMocks.map((job, i) => (
-                  <div key={i} className="rounded-[8px] bg-[#151519] border border-white/10 p-4 flex justify-between items-start">
-                    <div>
-                      <p className="text-[13px] font-bold">{job.title[lang]}</p>
-                      <p className="text-[12px] text-white/50 mt-1 flex items-center gap-1"><MapPin className="h-3 w-3" /> {job.place} • {job.pay}</p>
-                    </div>
+                <h3 className="text-[12px] font-black tracking-widest text-white/60">{lang === "es" ? "EMPLEO REAL EN MÉXICO" : lang === "en" ? "REAL JOBS IN MEXICO" : "TRAVAY REYÈL NAN MEKSIK"}</h3>
+                <div className="rounded-[8px] bg-[#151519] border border-white/10 p-4">
+                  <p className="text-[13px] text-white/70">{lang === "es" ? "El Portal del Empleo del Gobierno de México permite buscar vacantes por ciudad, oficio y profesión." : lang === "en" ? "Mexico's government Employment Portal lets you search vacancies by city, trade and profession." : "Portal Travay Gouvènman Meksik la pèmèt ou chèche travay selon vil, metye ak pwofesyon."}</p>
+                  <a href="https://www.empleo.gob.mx/" target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-[42px] items-center justify-center bg-[#D4A845] px-4 text-[10px] font-black tracking-widest text-black">{lang === "es" ? "BUSCAR EMPLEO" : lang === "en" ? "SEARCH JOBS" : "CHÈCHE TRAVAY"}</a>
+                </div>
+              </div>v>
                     <span className="rounded-full bg-[#D4A845]/15 border border-[#D4A845]/30 px-2 py-1 text-[10px] font-bold tracking-widest text-[#D4A845]">DEMO</span>
                   </div>
                 ))}
@@ -959,18 +958,14 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
         {route === "health" && (
           <div className="space-y-5">
             <h1 className="text-[28px] font-black tracking-tight">{t.healthTitle}</h1>
-            <div className="grid gap-3">
-              {services.filter(s=>s.category==="health"||s.category==="assistance").map(s=>(
-                <div key={s.id} className="rounded-[8px] bg-[#151519] border border-white/10 p-4">
-                  <div className="flex justify-between">
-                    <h3 className="text-[14px] font-bold">{s.name[lang]}</h3>
-                    <span className={`text-[10px] px-2 py-1 rounded-full border font-bold tracking-widest ${s.verified ? "border-emerald-400/30 text-emerald-300 bg-emerald-500/10" : "border-amber-400/30 text-amber-200 bg-amber-500/10"}`}>{s.verified ? t.verified : t.demo}</span>
-                  </div>
-                  <p className="text-[13px] text-white/60 mt-1">{s.desc[lang]}</p>
-                  <p className="text-[12px] text-white/40 mt-2 flex items-center gap-1"><Clock className="h-3 w-3" /> {s.hours} • <MapPin className="h-3 w-3" /> {s.location}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-[13px] text-white/55">{lang === "es" ? "Busca centros reales cerca de tu ubicación actual." : lang === "en" ? "Find real health facilities near your current location." : "Chèche sant sante reyèl toupre kote w ye a."}</p>
+            {serviceSearches.filter(s => s.id === "health").map(s => (
+              <div key={s.id} className="rounded-[8px] bg-[#151519] border border-white/10 p-4">
+                <h3 className="text-[14px] font-bold">{s.label[lang]}</h3>
+                <p className="text-[13px] text-white/60 mt-2">{lang === "es" ? "Resultados actuales con dirección, teléfono y horario." : lang === "en" ? "Current results with address, phone and hours." : "Rezilta aktyèl ak adrès, telefòn ak lè."}</p>
+                <a href={mapsUrl(s.query)} target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-[42px] items-center justify-center bg-[#D4A845] px-4 text-[10px] font-black tracking-widest text-black">{lang === "es" ? "BUSCAR CERCA DE MÍ" : lang === "en" ? "SEARCH NEAR ME" : "CHÈCHE TOUPRE M"}</a>
+              </div>
+            ))}
           </div>
         )}
 
@@ -978,15 +973,12 @@ export default function App({ fullAccess = true }: { fullAccess?: boolean }) {
         {route === "food" && (
           <div className="space-y-5">
             <h1 className="text-[28px] font-black tracking-tight">{t.foodTitle}</h1>
+            <p className="text-[13px] text-white/55">{lang === "es" ? "Busca comida, mercados, bancos y ayuda real cerca de ti." : lang === "en" ? "Find food, markets, banks and real help near you." : "Chèche manje, mache, bank ak èd reyèl toupre w."}</p>
             <div className="grid gap-3">
-              {services.filter(s=>["food","shelter","bank"].includes(s.category)).map(s=>(
-                <div key={s.id} className="rounded-[8px] bg-[#151519] border border-white/10 p-4">
-                  <div className="flex justify-between">
-                    <h3 className="text-[14px] font-bold">{s.name[lang]}</h3>
-                    <span className={`text-[10px] px-2 py-1 rounded-full border font-bold tracking-widest ${s.verified ? "border-emerald-400/30 text-emerald-300 bg-emerald-500/10" : "border-amber-400/30 text-amber-200 bg-amber-500/10"}`}>{s.verified ? t.verified : t.demo}</span>
-                  </div>
-                  <p className="text-[13px] text-white/60 mt-1">{s.desc[lang]}</p>
-                  <p className="text-[12px] text-white/40 mt-2">{s.location} • {s.hours}</p>
+              {serviceSearches.filter(s => ["food","shelter","bank"].includes(s.id)).map(s => (
+                <div key={s.id} className="rounded-[8px] bg-[#151519] border border-white/10 p-4 flex items-center justify-between gap-3">
+                  <h3 className="text-[14px] font-bold">{s.label[lang]}</h3>
+                  <a href={mapsUrl(s.query)} target="_blank" rel="noreferrer" className="shrink-0 min-h-[42px] px-3 flex items-center justify-center bg-[#D4A845] text-black text-[10px] font-black tracking-widest">{lang === "es" ? "ABRIR MAPA" : lang === "en" ? "OPEN MAP" : "LOUVRI KAT"}</a>
                 </div>
               ))}
             </div>
