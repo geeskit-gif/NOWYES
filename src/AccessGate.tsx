@@ -145,7 +145,11 @@ export default function AccessGate() {
   }
 
   if (status === "unlocked") {
-    return <App />;
+    return <App fullAccess={true} />;
+  }
+
+  if (status === "locked") {
+    return <App fullAccess={false} />;
   }
 
   return (
