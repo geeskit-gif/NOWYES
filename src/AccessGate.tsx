@@ -145,11 +145,11 @@ export default function AccessGate() {
   }
 
   if (status === "unlocked") {
-    return <App fullAccess={true} />;
+    return <App fullAccess={true} paymentUrl={PAYMENT_URL} />;
   }
 
   if (status === "locked") {
-    return <App fullAccess={false} />;
+    return <App fullAccess={false} paymentUrl={PAYMENT_URL} />;
   }
 
   return (
