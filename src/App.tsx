@@ -955,7 +955,6 @@ export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: bo
                   <a href="https://www.empleo.gob.mx/" target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-[42px] items-center justify-center bg-[#D4A845] px-4 text-[10px] font-black tracking-widest text-black">{lang === "es" ? "BUSCAR EMPLEO" : lang === "en" ? "SEARCH JOBS" : "CHÈCHE TRAVAY"}</a>
                 </div>
               </div>
-              </div>
             </div>
           </div>
         )}
