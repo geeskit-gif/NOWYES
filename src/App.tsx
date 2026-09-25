@@ -954,10 +954,7 @@ export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: bo
                   <p className="text-[13px] text-white/70">{lang === "es" ? "El Portal del Empleo del Gobierno de México permite buscar vacantes por ciudad, oficio y profesión." : lang === "en" ? "Mexico's government Employment Portal lets you search vacancies by city, trade and profession." : "Portal Travay Gouvènman Meksik la pèmèt ou chèche travay selon vil, metye ak pwofesyon."}</p>
                   <a href="https://www.empleo.gob.mx/" target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-[42px] items-center justify-center bg-[#D4A845] px-4 text-[10px] font-black tracking-widest text-black">{lang === "es" ? "BUSCAR EMPLEO" : lang === "en" ? "SEARCH JOBS" : "CHÈCHE TRAVAY"}</a>
                 </div>
-              </div>v>
-                    <span className="rounded-full bg-[#D4A845]/15 border border-[#D4A845]/30 px-2 py-1 text-[10px] font-bold tracking-widest text-[#D4A845]">DEMO</span>
-                  </div>
-                ))}
+              </div>
               </div>
             </div>
           </div>
