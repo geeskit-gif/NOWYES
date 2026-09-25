@@ -424,7 +424,8 @@ function useLocalStorage<T>(key: string, initial: T) {
 }
 
 export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: boolean; paymentUrl?: string }) {
-  const [lang, setLang] = useState<Lang>("es");
+  const initialPathLang: Lang = window.location.pathname.toLowerCase().startsWith("/en") ? "en" : window.location.pathname.toLowerCase().startsWith("/ht") ? "ht" : "es";
+  const [lang, setLang] = useState<Lang>(initialPathLang);
   const [route, setRoute] = useState<Route>("home");
   const [isOnline, setIsOnline] = useState(true);
   const [toast, setToast] = useState<string | null>(null);
@@ -463,6 +464,57 @@ export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: bo
   const [formAnswers, setFormAnswers] = useState({ q1: "", q2: "", q3: "", q4: "" });
 
   const t = translations[lang];
+
+  useEffect(() => {
+    const base = "https://nowyes.geeskitgsp.workers.dev";
+    const pathByLang: Record<Lang, string> = { es: "/", en: "/en", ht: "/ht" };
+    const titleByLang: Record<Lang, string> = {
+      es: "NOWYES | Ayuda y herramientas para migrantes en México",
+      en: "NOWYES | Help and tools for migrants in Mexico",
+      ht: "NOWYES | Èd ak zouti pou migran nan Meksik",
+    };
+    const descriptionByLang: Record<Lang, string> = {
+      es: "NOWYES es una guía práctica y asistente para migrantes en México: trámites, documentos, servicios, trabajo, salud, formularios, CV y recursos.",
+      en: "NOWYES is a practical guide and assistant for migrants in Mexico: documents, services, work, health, forms, CV and resources.",
+      ht: "NOWYES se yon gid pratik ak asistan pou migran nan Meksik: dokiman, sèvis, travay, sante, fòm, CV ak resous.",
+    };
+    const canonical = base + pathByLang[lang];
+    document.documentElement.lang = lang;
+    document.title = titleByLang[lang];
+
+    let description = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (!description) {
+      description = document.createElement("meta");
+      description.name = "description";
+      document.head.appendChild(description);
+    }
+    description.content = descriptionByLang[lang];
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonicalLink) {
+      canonicalLink = document.createElement("link");
+      canonicalLink.rel = "canonical";
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonical;
+
+    const alternates: Record<string, string> = {
+      es: base + "/",
+      en: base + "/en",
+      ht: base + "/ht",
+      "x-default": base + "/",
+    };
+    Object.entries(alternates).forEach(([hreflang, href]) => {
+      let link = document.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`) as HTMLLinkElement | null;
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "alternate";
+        link.hreflang = hreflang;
+        document.head.appendChild(link);
+      }
+      link.href = href;
+    });
+  }, [lang]);
 
   const premiumRoutes: Route[] = ["docs", "work", "forms", "kit"];
   const [showPremium, setShowPremium] = useState(false);
@@ -665,6 +717,8 @@ export default function App({ fullAccess = true, paymentUrl }: { fullAccess?: bo
                 <button
                   key={l}
                   onClick={() => {
+                    const path = l === "es" ? "/" : `/${l}`;
+                    window.history.pushState({}, "", path);
                     setLang(l);
                     showToast(l === 'es' ? 'Idioma: ESPAÑOL' : l === 'en' ? 'Language: ENGLISH' : 'Lang: KREYÒL');
                   }}
