@@ -3,7 +3,7 @@ import App from "./App";
 import logoUrl from "./assets/nowyes-logo.png";
 
 const ACCESS_API = "https://nowyes-access.geeskitgsp.workers.dev";
-const PAYMENT_URL = "https://buy.stripe.com/eVqdR85fR8nv2LsayB3cc07";
+const PAYMENT_URL = "https://buy.stripe.com/aFa7sK7nZ9rzdq62253cc08";
 const TOKEN_KEY = "nowyes_access_token";
 
 type Lang = "es" | "en" | "ht";
